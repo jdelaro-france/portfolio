@@ -7,7 +7,8 @@ body {
 
 .container {
     position: relative;
-    margin: 20px; /* Ajustez la marge selon vos préférences */
+    margin: 0; /* Aucune marge */
+    padding: 0; /* Aucun padding */
 }
 
 .square {
@@ -48,8 +49,7 @@ body {
     align-items: center;
     font-size: 14px;
     box-sizing: border-box;
-    /* Supprimer la bordure ici */
-    /* border: 2px solid black; */
+    /* Aucune bordure ici */
 }
 
 .square .front {
