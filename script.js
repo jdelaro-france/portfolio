@@ -5,7 +5,7 @@ function resetDescendants(id) {
     const descendants = document.querySelectorAll(`[data-parent-id="${id}"]`);
     descendants.forEach((descendant) => {
         resetDescendants(descendant.dataset.id); // Réinitialisation récursive
-        descendant.classList.add('hidden'); // Ajoute la classe cachée pour replier
+        descendant.classList.add('hidden'); // Cache pour replier
         setTimeout(() => descendant.remove(), 500); // Supprime après l'animation
     });
 }
@@ -18,6 +18,15 @@ function createSquare(parentId, dataId, contentFront, contentBack, direction) {
     square.dataset.parentId = parentId;
     square.dataset.clickCount = '0'; // Compteur de clics
     square.dataset.direction = direction;
+
+    // Assigner la classe de retournement en fonction de la direction
+    if (direction === 'right') {
+        square.classList.add('flip-horizontal');
+    } else if (direction === 'left') {
+        square.classList.add('flip-horizontal-reverse');
+    } else if (direction === 'down') {
+        square.classList.add('flip-vertical');
+    }
 
     const front = document.createElement('div');
     front.classList.add('front');
@@ -130,6 +139,10 @@ initialSquare.dataset.id = 'square-1';
 initialSquare.dataset.expanded = 'false';
 initialSquare.style.left = '0px';
 initialSquare.style.top = '0px';
+
+// Assigner la classe de retournement pour le carré initial (vers la droite)
+initialSquare.classList.add('flip-horizontal');
+
 initialSquare.addEventListener('click', () => {
     if (initialSquare.dataset.expanded === 'true') {
         resetDescendants('square-1'); // Réinitialise tout
