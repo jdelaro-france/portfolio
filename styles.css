@@ -7,13 +7,15 @@ body {
 
 .container {
     position: relative;
-    margin: 20px; /* Marge autour de la zone des carrés */
+    margin: 20px; /* Ajustez la marge selon vos préférences */
 }
 
 .square {
     position: absolute;
     width: 6.5cm;
     height: 6.5cm;
+    box-sizing: border-box;
+    border: 2px solid black;
     perspective: 1000px;
     cursor: pointer;
     transform-origin: left center;
@@ -45,8 +47,9 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 14px;
-    border: 2px solid black;
     box-sizing: border-box;
+    /* Supprimer la bordure ici */
+    /* border: 2px solid black; */
 }
 
 .square .front {
@@ -71,14 +74,14 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .square {
-        width: 50vw; /* 50% de la largeur de la fenêtre */
+        width: 50vw;
         height: 50vw;
     }
 }
 
 @media (max-width: 480px) {
     .square {
-        width: 70vw; /* 70% de la largeur de la fenêtre */
+        width: 70vw;
         height: 70vw;
     }
 }

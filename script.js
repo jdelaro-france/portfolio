@@ -32,7 +32,9 @@ function createSquare(parentId, dataId, contentFront, contentBack, direction) {
 
     // Positionnement en fonction de la direction
     const parentSquare = document.querySelector(`[data-id="${parentId}"]`);
-    const squareSize = parentSquare.offsetWidth;
+    const parentRect = parentSquare.getBoundingClientRect();
+
+    const squareSize = parentRect.width;
 
     const parentLeft = parseFloat(parentSquare.style.left) || 0;
     const parentTop = parseFloat(parentSquare.style.top) || 0;
