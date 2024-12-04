@@ -71,29 +71,21 @@ function createSquare(parentId, dataId, contentFront, contentBack, direction) {
         // Vérifier si le carré a des descendants
         const hasDescendants = document.querySelector(`[data-parent-id="${square.dataset.id}"]`);
 
-        if (hasDescendants) {
-            // Si le carré a des descendants, on les replie
-            resetDescendants(square.dataset.id);
+        if (square.dataset.id === 'square-2') {
+            // Spécificité pour le carré 2
+            if (square.classList.contains('flip')) {
+                // Si le carré 2 est retourné (face arrière) et qu'il a des descendants
+                if (hasDescendants) {
+                    resetDescendants(square.dataset.id);
+                    square.classList.remove('flip');
+                    square.dataset.clickCount = '0';
+                }
+            } else {
+                // Si le carré 2 n'est pas retourné (face avant)
+                let clickCount = parseInt(square.dataset.clickCount, 10);
+                clickCount += 1;
+                square.dataset.clickCount = clickCount.toString();
 
-            // Remettre le carré dans son état initial si nécessaire
-            square.classList.remove('flip');
-            square.dataset.clickCount = '0';
-
-            // Si c'est le carré 2 et qu'il a été retourné, on le remet dans son état initial
-            if (square.dataset.id === 'square-2' && square.classList.contains('flip')) {
-                square.classList.remove('flip');
-                square.dataset.clickCount = '0';
-            }
-        } else {
-            // Si le carré n'a pas de descendants, on applique le comportement initial
-            let clickCount = parseInt(square.dataset.clickCount, 10);
-
-            // Incrémenter le compteur de clics
-            clickCount += 1;
-            square.dataset.clickCount = clickCount.toString();
-
-            // Actions spécifiques en fonction de l'ID du carré
-            if (square.dataset.id === 'square-2') {
                 if (clickCount === 1) {
                     // Premier clic : Crée le carré 3 à droite
                     createSquare(square.dataset.id, 'square-3', 'Carré 3', 'Face arrière', 'right');
@@ -102,7 +94,22 @@ function createSquare(parentId, dataId, contentFront, contentBack, direction) {
                     createSquare(square.dataset.id, 'square-4', 'Carré 4', 'Face arrière', 'down');
                     square.classList.add('flip');
                 }
+            }
+        } else {
+            // Pour les autres carrés
+            if (hasDescendants) {
+                // Si le carré a des descendants, on les replie
+                resetDescendants(square.dataset.id);
+                square.classList.remove('flip');
+                square.dataset.clickCount = '0';
             } else {
+                // Si le carré n'a pas de descendants, on applique le comportement initial
+                let clickCount = parseInt(square.dataset.clickCount, 10);
+
+                // Incrémenter le compteur de clics
+                clickCount += 1;
+                square.dataset.clickCount = clickCount.toString();
+
                 // Retourner le carré
                 square.classList.add('flip');
 
