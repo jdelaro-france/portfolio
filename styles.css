@@ -7,8 +7,7 @@ body {
 
 .container {
     position: relative;
-    width: 100%;
-    height: 100vh;
+    margin: 20px; /* Marge autour de la zone des carrés */
 }
 
 .square {
@@ -22,9 +21,8 @@ body {
 }
 
 #square1 {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    top: 0;
 }
 
 .square.hidden {

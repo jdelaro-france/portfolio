@@ -32,13 +32,10 @@ function createSquare(parentId, dataId, contentFront, contentBack, direction) {
 
     // Positionnement en fonction de la direction
     const parentSquare = document.querySelector(`[data-id="${parentId}"]`);
-    const parentRect = parentSquare.getBoundingClientRect();
-    const containerRect = container.getBoundingClientRect();
-
-    // Calcul de la position en tenant compte du défilement (scroll)
-    const parentLeft = parentSquare.offsetLeft;
-    const parentTop = parentSquare.offsetTop;
     const squareSize = parentSquare.offsetWidth;
+
+    const parentLeft = parseFloat(parentSquare.style.left) || 0;
+    const parentTop = parseFloat(parentSquare.style.top) || 0;
 
     if (direction === 'right') {
         square.style.left = `${parentLeft + squareSize}px`;
@@ -129,6 +126,8 @@ function createSquare(parentId, dataId, contentFront, contentBack, direction) {
 const initialSquare = document.querySelector('#square1');
 initialSquare.dataset.id = 'square-1';
 initialSquare.dataset.expanded = 'false';
+initialSquare.style.left = '0px';
+initialSquare.style.top = '0px';
 initialSquare.addEventListener('click', () => {
     if (initialSquare.dataset.expanded === 'true') {
         resetDescendants('square-1'); // Réinitialise tout
