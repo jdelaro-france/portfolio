@@ -35,15 +35,20 @@ function createSquare(parentId, dataId, contentFront, contentBack, direction) {
     const parentRect = parentSquare.getBoundingClientRect();
     const containerRect = container.getBoundingClientRect();
 
+    // Calcul de la position en tenant compte du défilement (scroll)
+    const parentLeft = parentSquare.offsetLeft;
+    const parentTop = parentSquare.offsetTop;
+    const squareSize = parentSquare.offsetWidth;
+
     if (direction === 'right') {
-        square.style.left = `${parentRect.right - containerRect.left}px`;
-        square.style.top = `${parentRect.top - containerRect.top}px`;
+        square.style.left = `${parentLeft + squareSize}px`;
+        square.style.top = `${parentTop}px`;
     } else if (direction === 'down') {
-        square.style.left = `${parentRect.left - containerRect.left}px`;
-        square.style.top = `${parentRect.bottom - containerRect.top}px`;
+        square.style.left = `${parentLeft}px`;
+        square.style.top = `${parentTop + squareSize}px`;
     } else if (direction === 'left') {
-        square.style.left = `${parentRect.left - containerRect.left - parentRect.width}px`;
-        square.style.top = `${parentRect.top - containerRect.top}px`;
+        square.style.left = `${parentLeft - squareSize}px`;
+        square.style.top = `${parentTop}px`;
     }
 
     container.appendChild(square);
