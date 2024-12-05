@@ -1,5 +1,3 @@
-/* styles.css */
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -19,9 +17,8 @@ body {
     height: 6.5cm;
     box-sizing: border-box;
     border: 2px solid black;
-    background-color: white;
+    perspective: 1000px;
     cursor: pointer;
-    opacity: 0;
     transition: opacity 0.5s ease;
 }
 
@@ -30,20 +27,102 @@ body {
     top: 0;
 }
 
-.square.visible {
+.square.hidden {
+    opacity: 0;
+}
+
+.square.unfold {
     opacity: 1;
 }
 
-.square .content {
+/* Styles communs pour l'effet de retournement */
+.square .front,
+.square .back {
+    position: absolute;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    box-sizing: border-box;
+    overflow: hidden; /* Pour que l'image ne déborde pas */
 }
 
-.square .content img {
+.square .front img,
+.square .back img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Ajuste l'image pour couvrir toute la face */
+}
+
+.square .back {
+    transform: rotateY(180deg);
+}
+
+/* Effet de retournement pour les carrés allant vers la droite (gauche à droite) */
+.flip-horizontal .front {
+    transform: rotateY(0deg);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+
+.flip-horizontal.flip .front {
+    transform: rotateY(-180deg);
+}
+
+.flip-horizontal .back {
+    transform: rotateY(180deg);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+
+.flip-horizontal.flip .back {
+    transform: rotateY(0deg);
+}
+
+/* Effet de retournement pour les carrés allant vers la gauche (droite à gauche) */
+.flip-horizontal-reverse .front {
+    transform: rotateY(0deg);
+    transform-origin: right;
+    transition: transform 0.5s ease;
+}
+
+.flip-horizontal-reverse.flip .front {
+    transform: rotateY(180deg);
+}
+
+.flip-horizontal-reverse .back {
+    transform: rotateY(-180deg);
+    transform-origin: right;
+    transition: transform 0.5s ease;
+}
+
+.flip-horizontal-reverse.flip .back {
+    transform: rotateY(0deg);
+}
+
+/* Effet de retournement pour les carrés allant vers le bas (haut en bas) */
+.flip-vertical .front {
+    transform: rotateX(0deg);
+    transform-origin: top;
+    transition: transform 0.5s ease;
+}
+
+.flip-vertical.flip .front {
+    transform: rotateX(-180deg);
+}
+
+.flip-vertical .back {
+    transform: rotateX(180deg);
+    transform-origin: top;
+    transition: transform 0.5s ease;
+}
+
+.flip-vertical.flip .back {
+    transform: rotateX(0deg);
 }
 
 /* Design réactif */
