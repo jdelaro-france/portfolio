@@ -139,3 +139,16 @@ body {
         height: 70vw;
     }
 }
+
+/* Styles pour la consigne */
+.instructions {
+    text-align: center;
+    margin: 20px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.instructions p {
+    margin: 0;
+    padding: 0;
+}
