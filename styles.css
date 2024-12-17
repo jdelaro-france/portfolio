@@ -52,20 +52,9 @@ body {
     border: 2px solid black;
     perspective: 1000px;
     cursor: pointer;
-    transition: opacity 0.5s ease;
 }
 
-#square1 {
-    /* Le positionnement sera défini dynamiquement par JavaScript */
-}
-
-.square.hidden {
-    opacity: 0;
-}
-
-.square.unfold {
-    opacity: 1;
-}
+/* On ne met plus .hidden ni .unfold pour le premier carré */
 
 /* Styles communs pour l'effet de retournement */
 .square .front,
@@ -94,7 +83,7 @@ body {
     transform: rotateY(180deg);
 }
 
-/* Effet de retournement pour les carrés allant vers la droite */
+/* Effet de retournement (droite) */
 .flip-horizontal .front {
     transform: rotateY(0deg);
     transform-origin: left;
@@ -115,7 +104,7 @@ body {
     transform: rotateY(0deg);
 }
 
-/* Effet de retournement pour les carrés allant vers la gauche */
+/* Effet de retournement (gauche) */
 .flip-horizontal-reverse .front {
     transform: rotateY(0deg);
     transform-origin: right;
@@ -136,7 +125,7 @@ body {
     transform: rotateY(0deg);
 }
 
-/* Effet de retournement pour les carrés allant vers le bas */
+/* Effet de retournement (bas) */
 .flip-vertical .front {
     transform: rotateX(0deg);
     transform-origin: top;
