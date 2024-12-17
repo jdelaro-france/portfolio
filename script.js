@@ -1,18 +1,17 @@
 const container = document.querySelector('.container');
 
 // Paramètres finaux du CV
-const finalColumns = 5; // 5 carrés de large
-const finalRows = 3;    // 3 carrés de haut
-// Conversion approximative : 6.5cm ≈ 246px (approximé)
+const finalColumns = 5;
+const finalRows = 3;
+// Approx : 6.5cm ~ 246px
 const squareSizePx = 246;
-const finalWidthPx = finalColumns * squareSizePx;   // 5 * 246 = ~1230 px
-const finalHeightPx = finalRows * squareSizePx;     // 3 * 246 = ~738 px
+const finalWidthPx = finalColumns * squareSizePx;   // ~1230 px
+const finalHeightPx = finalRows * squareSizePx;     // ~738 px
 
 function resetDescendants(id) {
     const descendants = document.querySelectorAll(`[data-parent-id="${id}"]`);
     descendants.forEach((descendant) => {
         resetDescendants(descendant.dataset.id);
-        // On enlève toute logique de disparition (hidden/unfold), on supprime directement
         descendant.remove();
     });
 }
@@ -83,8 +82,11 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
 
     container.appendChild(square);
 
-    // Pas de hidden/unfold pour ce carré non plus, il apparaît directement.
-    // On suppose que le retournement se fera au clic.
+    // Faire défiler la page pour afficher le nouveau carré
+    // On utilise un setTimeout court pour laisser le navigateur mettre à jour l'élément avant de scroller
+    setTimeout(() => {
+        square.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }, 50);
 
     square.addEventListener('click', () => {
         const hasDescendants = document.querySelector(`[data-parent-id="${square.dataset.id}"]`);
@@ -200,13 +202,10 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
     return square;
 }
 
-// Gestion de la couverture initiale
 const initialSquare = document.querySelector('#square1');
 initialSquare.dataset.id = 'square-1';
 initialSquare.dataset.expanded = 'false';
 
-// On ne met pas de flip-horizontal ni rien, il reste stable
-// Le positionnement se fera après le chargement
 window.addEventListener('load', () => {
     positionInitialSquare();
 });

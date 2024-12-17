@@ -10,9 +10,9 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    overflow: auto; /* Permet le défilement si le contenu dépasse la hauteur */
 }
 
-/* Nom au-dessus du texte */
 .header-name {
     text-align: center;
     margin: 20px;
@@ -35,7 +35,7 @@ body {
 .intro p {
     margin: 0;
     padding: 0 20px;
-    margin-bottom: 20px; /* Un peu d'espace entre les paragraphes */
+    margin-bottom: 20px; 
 }
 
 .intro .cta {
@@ -44,7 +44,7 @@ body {
 }
 
 .intro .cta a {
-    color: #0073b1; /* Couleur du lien LinkedIn */
+    color: #0073b1;
     text-decoration: none;
     font-weight: bold;
 }
