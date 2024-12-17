@@ -1,9 +1,12 @@
 const container = document.querySelector('.container');
 
-// Paramètres finaux (basés sur votre arrangement final)
+// Paramètres finaux du CV
 const finalColumns = 5; // 5 carrés de large
 const finalRows = 3;    // 3 carrés de haut
-const squareSizeCm = 6.5; // Taille d'un carré en cm
+// Conversion approximative : 6.5cm ≈ 246px
+const squareSizePx = 246;
+const finalWidthPx = finalColumns * squareSizePx;   // 5 * 246 = 1230 px
+const finalHeightPx = finalRows * squareSizePx;     // 3 * 246 = 738 px
 
 // Fonction pour réinitialiser les descendants
 function resetDescendants(id) {
@@ -15,31 +18,14 @@ function resetDescendants(id) {
     });
 }
 
-// Fonction pour centrer le CV final en positionnant le premier carré
+// Positionner le premier carré pour que le résultat final soit centré
 function positionInitialSquare() {
-    // On calcule la largeur et la hauteur finale en cm
-    const finalWidthCm = finalColumns * squareSizeCm;
-    const finalHeightCm = finalRows * squareSizeCm;
-
-    // On va convertir ces cm en pixels. Pour cela, on crée un élément temporaire
-    // afin de récupérer la valeur en pixels d'une dimension en cm.
-    // Cela permet de positionner correctement en px.
-    const tempDiv = document.createElement('div');
-    tempDiv.style.width = squareSizeCm + 'cm';
-    document.body.appendChild(tempDiv);
-    const oneCmInPx = tempDiv.getBoundingClientRect().width;
-    document.body.removeChild(tempDiv);
-
-    const finalWidthPx = finalWidthCm * oneCmInPx;
-    const finalHeightPx = finalHeightCm * oneCmInPx;
-
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
 
     const offsetX = (windowWidth - finalWidthPx) / 2;
     const offsetY = (windowHeight - finalHeightPx) / 2;
 
-    // On positionne le carré initial (#square1)
     const initialSquare = document.querySelector('#square1');
     initialSquare.style.left = offsetX + 'px';
     initialSquare.style.top = offsetY + 'px';
@@ -85,7 +71,6 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
     // Positionnement en fonction de la direction
     const parentSquare = document.querySelector(`[data-id="${parentId}"]`);
     const parentRect = parentSquare.getBoundingClientRect();
-
     const squareSize = parentRect.width;
     const parentLeft = parseFloat(parentSquare.style.left) || 0;
     const parentTop = parseFloat(parentSquare.style.top) || 0;
@@ -110,20 +95,16 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
 
     // Gestion des clics sur le carré
     square.addEventListener('click', () => {
-        // Vérifier si le carré a des descendants
         const hasDescendants = document.querySelector(`[data-parent-id="${square.dataset.id}"]`);
 
         if (square.dataset.id === 'square-2') {
-            // Spécificité pour le carré 2
             if (square.classList.contains('flip')) {
-                // Si le carré 2 est retourné (face arrière) et qu'il a des descendants
                 if (hasDescendants) {
                     resetDescendants(square.dataset.id);
                     square.classList.remove('flip');
                     square.dataset.clickCount = '0';
                 }
             } else {
-                // Si le carré 2 n'est pas retourné (face avant)
                 let clickCount = parseInt(square.dataset.clickCount, 10);
                 clickCount += 1;
                 square.dataset.clickCount = clickCount.toString();
@@ -150,26 +131,18 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
                 }
             }
         } else {
-            // Pour les autres carrés
             if (hasDescendants) {
-                // Si le carré a des descendants, on les replie
                 resetDescendants(square.dataset.id);
                 square.classList.remove('flip');
                 square.dataset.clickCount = '0';
             } else {
-                // Si le carré n'a pas de descendants, on applique le comportement initial
                 let clickCount = parseInt(square.dataset.clickCount, 10);
-
-                // Incrémenter le compteur de clics
                 clickCount += 1;
                 square.dataset.clickCount = clickCount.toString();
-
-                // Retourner le carré
                 square.classList.add('flip');
 
                 switch (square.dataset.id) {
                     case 'square-3':
-                        // Crée le carré 5 à droite
                         createSquare(
                             square.dataset.id,
                             'square-5',
@@ -179,7 +152,6 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
                         );
                         break;
                     case 'square-5':
-                        // Crée le carré 6 en dessous
                         createSquare(
                             square.dataset.id,
                             'square-6',
@@ -189,7 +161,6 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
                         );
                         break;
                     case 'square-6':
-                        // Crée le carré 7 en dessous
                         createSquare(
                             square.dataset.id,
                             'square-7',
@@ -199,7 +170,6 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
                         );
                         break;
                     case 'square-7':
-                        // Crée le carré 8 à droite et le retourne immédiatement
                         const square8 = createSquare(
                             square.dataset.id,
                             'square-8',
@@ -208,10 +178,9 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
                             'right'
                         );
                         square8.classList.add('flip');
-                        square8.dataset.clickCount = '1'; // Empêche les clics supplémentaires
+                        square8.dataset.clickCount = '1';
                         break;
                     case 'square-4':
-                        // Crée le carré 9 en dessous
                         createSquare(
                             square.dataset.id,
                             'square-9',
@@ -221,7 +190,6 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
                         );
                         break;
                     case 'square-9':
-                        // Crée le carré 10 à gauche et le retourne immédiatement
                         const square10 = createSquare(
                             square.dataset.id,
                             'square-10',
@@ -230,7 +198,7 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
                             'left'
                         );
                         square10.classList.add('flip');
-                        square10.dataset.clickCount = '1'; // Empêche les clics supplémentaires
+                        square10.dataset.clickCount = '1';
                         break;
                     default:
                         // Aucun comportement pour les autres carrés
@@ -247,29 +215,23 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
 const initialSquare = document.querySelector('#square1');
 initialSquare.dataset.id = 'square-1';
 initialSquare.dataset.expanded = 'false';
-// On ne fixe plus sa position ici, on le fera dynamiquement après le chargement
 initialSquare.classList.add('flip-horizontal');
 
 window.addEventListener('load', () => {
-    // Positionner le premier carré pour que le résultat final soit centré
     positionInitialSquare();
 });
 
 initialSquare.addEventListener('click', () => {
-    // Vérifier si le carré initial a des descendants
     const hasDescendants = document.querySelector(`[data-parent-id="${initialSquare.dataset.id}"]`);
 
     if (hasDescendants) {
-        // Replier tous les descendants
         resetDescendants('square-1');
         initialSquare.classList.remove('flip');
         initialSquare.dataset.expanded = 'false';
         initialSquare.dataset.clickCount = '0';
     } else {
-        // Déplier le carré initial
         initialSquare.classList.add('flip');
         initialSquare.dataset.expanded = 'true';
-        // Crée le carré 2 à droite
         createSquare(
             'square-1',
             'square-2',
