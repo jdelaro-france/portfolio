@@ -10,7 +10,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-    overflow: auto; /* Permet le défilement si le contenu dépasse la hauteur */
 }
 
 .header-name {
@@ -33,9 +32,8 @@ body {
 }
 
 .intro p {
-    margin: 0;
+    margin: 0 0 20px;
     padding: 0 20px;
-    margin-bottom: 20px; 
 }
 
 .intro .cta {
@@ -44,7 +42,7 @@ body {
 }
 
 .intro .cta a {
-    color: #0073b1;
+    color: #0073b1; 
     text-decoration: none;
     font-weight: bold;
 }
@@ -81,8 +79,6 @@ body {
     perspective: 1000px;
     cursor: pointer;
 }
-
-/* Pas de hidden/unfold pour le premier carré */
 
 .square .front,
 .square .back {
@@ -171,17 +167,25 @@ body {
     transform: rotateX(0deg);
 }
 
-/* Design réactif */
-@media (max-width: 768px) {
-    .square {
-        width: 50vw;
-        height: 50vw;
-    }
+/* Version desktop (large écran) */
+@media (min-width: 769px) {
+    /* Ici vous pouvez remettre la logique de centrage initiale si vous le souhaitez,
+       Par exemple si vous aviez un positionnement initial géré par JS. */
 }
 
-@media (max-width: 480px) {
+/* Version mobile/tablette */
+@media (max-width: 768px) {
+    .container {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .square {
-        width: 70vw;
-        height: 70vw;
+        position: static;
+        width: 80vw;
+        height: 80vw;
+        margin-bottom: 20px;
     }
 }
