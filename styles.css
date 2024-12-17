@@ -12,16 +12,16 @@ body {
     background-color: #f4f4f4;
 }
 
-.instructions {
+/* Nom au-dessus du texte */
+.header-name {
     text-align: center;
     margin: 20px;
-    font-size: 1.2em;
-    color: #333;
 }
 
-.instructions p {
+.header-name h1 {
     margin: 0;
-    padding: 0;
+    font-size: 2em;
+    color: #333;
 }
 
 .intro {
@@ -35,6 +35,34 @@ body {
 .intro p {
     margin: 0;
     padding: 0 20px;
+    margin-bottom: 20px; /* Un peu d'espace entre les paragraphes */
+}
+
+.intro .cta {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.intro .cta a {
+    color: #0073b1; /* Couleur du lien LinkedIn */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.intro .cta a:hover {
+    text-decoration: underline;
+}
+
+.instructions {
+    text-align: center;
+    margin: 20px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.instructions p {
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -54,9 +82,8 @@ body {
     cursor: pointer;
 }
 
-/* On ne met plus .hidden ni .unfold pour le premier carré */
+/* Pas de hidden/unfold pour le premier carré */
 
-/* Styles communs pour l'effet de retournement */
 .square .front,
 .square .back {
     position: absolute;
@@ -83,7 +110,7 @@ body {
     transform: rotateY(180deg);
 }
 
-/* Effet de retournement (droite) */
+/* Effets de retournement */
 .flip-horizontal .front {
     transform: rotateY(0deg);
     transform-origin: left;
@@ -104,7 +131,6 @@ body {
     transform: rotateY(0deg);
 }
 
-/* Effet de retournement (gauche) */
 .flip-horizontal-reverse .front {
     transform: rotateY(0deg);
     transform-origin: right;
@@ -125,7 +151,6 @@ body {
     transform: rotateY(0deg);
 }
 
-/* Effet de retournement (bas) */
 .flip-vertical .front {
     transform: rotateX(0deg);
     transform-origin: top;
