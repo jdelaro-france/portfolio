@@ -1,5 +1,10 @@
 const container = document.querySelector('.container');
 
+// Paramètres finaux (basés sur votre arrangement final)
+const finalColumns = 5; // 5 carrés de large
+const finalRows = 3;    // 3 carrés de haut
+const squareSizeCm = 6.5; // Taille d'un carré en cm
+
 // Fonction pour réinitialiser les descendants
 function resetDescendants(id) {
     const descendants = document.querySelectorAll(`[data-parent-id="${id}"]`);
@@ -8,6 +13,36 @@ function resetDescendants(id) {
         descendant.classList.add('hidden'); // Cache pour replier
         setTimeout(() => descendant.remove(), 500); // Supprime après l'animation
     });
+}
+
+// Fonction pour centrer le CV final en positionnant le premier carré
+function positionInitialSquare() {
+    // On calcule la largeur et la hauteur finale en cm
+    const finalWidthCm = finalColumns * squareSizeCm;
+    const finalHeightCm = finalRows * squareSizeCm;
+
+    // On va convertir ces cm en pixels. Pour cela, on crée un élément temporaire
+    // afin de récupérer la valeur en pixels d'une dimension en cm.
+    // Cela permet de positionner correctement en px.
+    const tempDiv = document.createElement('div');
+    tempDiv.style.width = squareSizeCm + 'cm';
+    document.body.appendChild(tempDiv);
+    const oneCmInPx = tempDiv.getBoundingClientRect().width;
+    document.body.removeChild(tempDiv);
+
+    const finalWidthPx = finalWidthCm * oneCmInPx;
+    const finalHeightPx = finalHeightCm * oneCmInPx;
+
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    const offsetX = (windowWidth - finalWidthPx) / 2;
+    const offsetY = (windowHeight - finalHeightPx) / 2;
+
+    // On positionne le carré initial (#square1)
+    const initialSquare = document.querySelector('#square1');
+    initialSquare.style.left = offsetX + 'px';
+    initialSquare.style.top = offsetY + 'px';
 }
 
 // Fonction pour créer un carré descendant avec un ID spécifique
@@ -52,19 +87,18 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
     const parentRect = parentSquare.getBoundingClientRect();
 
     const squareSize = parentRect.width;
-
     const parentLeft = parseFloat(parentSquare.style.left) || 0;
     const parentTop = parseFloat(parentSquare.style.top) || 0;
 
     if (direction === 'right') {
-        square.style.left = `${parentLeft + squareSize}px`;
-        square.style.top = `${parentTop}px`;
+        square.style.left = (parentLeft + squareSize) + 'px';
+        square.style.top = parentTop + 'px';
     } else if (direction === 'down') {
-        square.style.left = `${parentLeft}px`;
-        square.style.top = `${parentTop + squareSize}px`;
+        square.style.left = parentLeft + 'px';
+        square.style.top = (parentTop + squareSize) + 'px';
     } else if (direction === 'left') {
-        square.style.left = `${parentLeft - squareSize}px`;
-        square.style.top = `${parentTop}px`;
+        square.style.left = (parentLeft - squareSize) + 'px';
+        square.style.top = parentTop + 'px';
     }
 
     container.appendChild(square);
@@ -213,11 +247,13 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
 const initialSquare = document.querySelector('#square1');
 initialSquare.dataset.id = 'square-1';
 initialSquare.dataset.expanded = 'false';
-initialSquare.style.left = '0px';
-initialSquare.style.top = '0px';
-
-// Assigner la classe de retournement pour le carré initial (vers la droite)
+// On ne fixe plus sa position ici, on le fera dynamiquement après le chargement
 initialSquare.classList.add('flip-horizontal');
+
+window.addEventListener('load', () => {
+    // Positionner le premier carré pour que le résultat final soit centré
+    positionInitialSquare();
+});
 
 initialSquare.addEventListener('click', () => {
     // Vérifier si le carré initial a des descendants
@@ -225,7 +261,7 @@ initialSquare.addEventListener('click', () => {
 
     if (hasDescendants) {
         // Replier tous les descendants
-        resetDescendants(initialSquare.dataset.id);
+        resetDescendants('square-1');
         initialSquare.classList.remove('flip');
         initialSquare.dataset.expanded = 'false';
         initialSquare.dataset.clickCount = '0';
