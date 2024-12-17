@@ -1,8 +1,41 @@
+/* Import de la police Avenir si vous l’avez */
+@font-face {
+    font-family: 'Avenir';
+    src: url('fonts/Avenir.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Avenir', Arial, sans-serif; /* Utilise Avenir si dispo, sinon Arial */
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+}
+
+.instructions {
+    text-align: center;
+    margin: 20px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.instructions p {
+    margin: 0;
+    padding: 0;
+}
+
+.intro {
+    max-width: 600px;
+    margin: 20px auto;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+}
+
+.intro p {
+    margin: 0;
+    padding: 0 20px; /* Ajoute une marge latérale pour l’aération */
 }
 
 .container {
@@ -138,17 +171,4 @@ body {
         width: 70vw;
         height: 70vw;
     }
-}
-
-/* Styles pour la consigne */
-.instructions {
-    text-align: center;
-    margin: 20px;
-    font-size: 1.2em;
-    color: #333;
-}
-
-.instructions p {
-    margin: 0;
-    padding: 0;
 }
