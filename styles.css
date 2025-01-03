@@ -52,7 +52,7 @@ body {
 /* Liens */
 .intro .cta {
     text-align: center;
-    margin-bottom: 0; /* Pas de marge supplémentaire en bas */
+    margin-bottom: 0;
 }
 
 .intro .cta a {
@@ -65,13 +65,12 @@ body {
     text-decoration: underline;
 }
 
-/* Instructions : on réduit la marge pour rapprocher du carré */
+/* Phrase "Pour déplier..." */
 .instructions {
     text-align: center;
     font-size: 1.2em;
     color: #333;
-    margin: 20px auto; /* Au lieu de 20px tout autour, on fait 20px vertical */
-    /* margin: 0 auto 20px auto; --> autre possibilité si besoin plus serré */
+    margin: 20px auto;
 }
 
 .instructions p {
@@ -221,7 +220,6 @@ body {
 #mobileVersion {
     width: 100%;
     max-width: 600px;
-    /* Hauteur du conteneur Swiper */
     height: 70vh;
     margin: 0 auto;
     box-sizing: border-box;
@@ -233,7 +231,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100% - 30px); /* Laisse un peu de place en bas pour la pagination */
+    height: calc(100% - 30px); 
 }
 
 .swiper-slide img {

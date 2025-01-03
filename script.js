@@ -20,12 +20,11 @@ function positionInitialSquare() {
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
 
-    // On calcule l'offset initial
     let offsetX = (windowWidth - finalWidthPx) / 2;
     let offsetY = (windowHeight - finalHeightPx) / 2;
 
-    // On réduit l'espace vertical de 50 px
-    offsetY = offsetY - 50;
+    // Décalage éventuel si tu veux rapprocher ou éloigner le premier carré
+    // offsetY = offsetY - 50; // exemple
 
     const initialSquare = document.querySelector('#square1');
     initialSquare.style.left = offsetX + 'px';

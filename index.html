@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>CV Dépliant - Desktop et Mobile</title>
+  <!-- Indispensable pour un bon rendu sur mobile -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- CSS principal -->
@@ -58,7 +59,9 @@
   </div>
   <!-- ======================= FIN VERSION DESKTOP ======================= -->
 
-  <!-- ======================= VERSION MOBILE (SWIPER) ======================= -->
+  <!-- ======================= VERSION MOBILE ======================= -->
+
+  <!-- Entête mobile : nom + phrase + liens -->
   <div id="mobileHeader">
     <h1>Jérôme de Laromiguière</h1>
     <p>Spécialiste en innovation produit</p>
@@ -69,24 +72,55 @@
     </p>
   </div>
 
+  <!-- Carrousel Swiper (version mobile) -->
   <div id="mobileVersion" class="swiper">
     <div class="swiper-wrapper">
+      <!-- Ordre des images que tu as demandé -->
       <div class="swiper-slide">
-        <img src="images/cover_front.jpg" alt="Slide 1">
+        <img src="images/cover_front.jpg" alt="Slide 1 : cover_front">
       </div>
       <div class="swiper-slide">
-        <img src="images/cover_back.jpg" alt="Slide 2">
+        <img src="images/square4_back.jpg" alt="Slide 2 : square4_back">
       </div>
       <div class="swiper-slide">
-        <img src="images/square2_front.jpg" alt="Slide 3">
+        <img src="images/square9_front.jpg" alt="Slide 3 : square9_front">
       </div>
       <div class="swiper-slide">
-        <img src="images/square2_back.jpg" alt="Slide 4">
+        <img src="images/square11.jpg" alt="Slide 4 : square11">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/square3_back.jpg" alt="Slide 5 : square3_back">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/square5_front.jpg" alt="Slide 6 : square5_front">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/square5_back.jpg" alt="Slide 7 : square5_back">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/square6_front.jpg" alt="Slide 8 : square6_front">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/square6_back.jpg" alt="Slide 9 : square6_back">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/square7_front.jpg" alt="Slide 10 : square7_front">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/square7_back.jpg" alt="Slide 11 : square7_back">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/square8_back.jpg" alt="Slide 12 : square8_back">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/square2_back.jpg" alt="Slide 13 : square2_back">
       </div>
     </div>
+
+    <!-- Pagination Swiper (petits points) -->
     <div class="swiper-pagination"></div>
   </div>
-  <!-- ======================= FIN VERSION MOBILE (SWIPER) ======================= -->
+  <!-- ======================= FIN VERSION MOBILE ======================= -->
 
   <!-- Script desktop (CV dépliant) -->
   <script src="script.js"></script>
@@ -94,7 +128,8 @@
   <!-- Swiper JS (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-  <!-- Initialisation de Swiper mobile -->
+  <!-- Initialisation de Swiper pour la version mobile 
+       (suppression des ombres, pagination collée) -->
   <script>
     const swiper = new Swiper('.swiper', {
       effect: 'cards',
