@@ -20,10 +20,10 @@ body {
 }
 
 /* -------------------------------------------------- */
-/* Version desktop                                     */
+/* Version desktop (≥ 769px)                          */
 /* -------------------------------------------------- */
 #desktopVersion {
-    /* Affiché uniquement sur desktop (>= 769px) */
+    /* S'affiche uniquement sur desktop (media queries plus bas) */
 }
 
 .header-name {
@@ -183,24 +183,68 @@ body {
 }
 
 /* -------------------------------------------------- */
-/* Version mobile (Swiper)                            */
+/* Version mobile (Swiper) + header mobile            */
 /* -------------------------------------------------- */
+
+/* Masqué par défaut (pour la version desktop), on l'affiche en media query */
+#mobileHeader,
 #mobileVersion {
-    /* Caché par défaut sur grand écran. 
-       Affiché sur mobile via media queries. */
     display: none;
-    width: 100%;
-    /* Hauteur du conteneur Swiper (à ajuster à volonté) */
-    height: 80vh;
-    margin: 0 auto;
-    box-sizing: border-box;
 }
 
+/* Entête mobile */
+#mobileHeader {
+    text-align: center;
+    max-width: 600px;
+    margin: 20px auto 10px auto;
+    padding: 0 10px;
+}
+
+#mobileHeader h1 {
+    font-size: 1.4em;
+    margin: 0;
+    color: #333;
+}
+
+#mobileHeader p {
+    font-size: 0.95em;
+    margin: 10px auto;
+    color: #666;
+    line-height: 1.4;
+}
+
+#mobileHeader .cta {
+    margin-bottom: 0;
+}
+
+#mobileHeader .cta a {
+    color: #0073b1;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+#mobileHeader .cta a:hover {
+    text-decoration: underline;
+}
+
+#mobileVersion {
+    width: 100%;
+    max-width: 600px;
+    /* Hauteur du conteneur Swiper, à ajuster si besoin */
+    height: 70vh; 
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative; 
+}
+
+/* Pour que la pagination soit juste sous les cartes */
 .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* Chaque slide occupe 100% de la hauteur du container Swiper */
+    height: calc(100% - 30px); 
+    /* On laisse un petit espace en bas pour la pagination */
 }
 
 .swiper-slide img {
@@ -209,13 +253,23 @@ body {
     object-fit: cover; /* ou contain, selon l'effet voulu */
 }
 
+/* Pagination juste en dessous : on peut la positionner avec un margin-top faible */
+.swiper-pagination {
+    text-align: center;
+    margin-top: 5px;  /* Très petit écart entre la carte et les points */
+    margin-bottom: 0;
+    position: relative; 
+}
+
 /* -------------------------------------------------- */
 /* Media queries pour basculer entre desktop/mobile   */
 /* -------------------------------------------------- */
+/* Pour <= 768px : afficher header & swiper mobile, masquer desktopVersion */
 @media (max-width: 768px) {
     #desktopVersion {
         display: none !important;
     }
+    #mobileHeader,
     #mobileVersion {
         display: block !important;
     }
@@ -233,10 +287,12 @@ body {
     }
 }
 
+/* Pour >= 769px : afficher desktop, masquer version mobile */
 @media (min-width: 769px) {
     #desktopVersion {
         display: block !important;
     }
+    #mobileHeader,
     #mobileVersion {
         display: none !important;
     }

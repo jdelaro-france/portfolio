@@ -91,7 +91,7 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
         const hasDescendants = document.querySelector(`[data-parent-id="${square.dataset.id}"]`);
 
         if (square.dataset.id === 'square-2') {
-            // Gestion spéciale pour le square-2
+            // Gestion spéciale pour square-2
             if (square.classList.contains('flip')) {
                 if (hasDescendants) {
                     resetDescendants(square.dataset.id);
