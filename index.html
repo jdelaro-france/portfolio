@@ -5,14 +5,13 @@
   <title>CV Dépliant - Desktop et Mobile</title>
 
   <!-- CSS principal -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 
-  <!-- Swiper CSS depuis un CDN (version 10.x par exemple) -->
+  <!-- Swiper CSS depuis un CDN (ex. version 10.x) -->
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
   />
-
 </head>
 <body>
 
@@ -62,7 +61,7 @@
   <!-- ======================= VERSION MOBILE (SWIPER) ======================= -->
   <div id="mobileVersion" class="swiper">
     <div class="swiper-wrapper">
-      <!-- Exemple : chaque image = 1 carte (slide). Ajuste selon tes images réelles. -->
+      <!-- Une slide = une image (exemple). Ajuste selon tes visuels réels. -->
       <div class="swiper-slide">
         <img src="images/cover_front.jpg" alt="Slide 1">
       </div>
@@ -81,11 +80,11 @@
       <div class="swiper-slide">
         <img src="images/square3_back.jpg" alt="Slide 6">
       </div>
-      <!-- ... Ajoute autant de slides que nécessaire ... -->
+      <!-- Ajoute d'autres slides si nécessaire (square4_front/back, etc.) -->
     </div>
-    <!-- Si tu veux la pagination Swiper : -->
+
+    <!-- Pagination (optionnelle) -->
     <div class="swiper-pagination"></div>
-    <!-- Pour la navigation, etc., tu peux ajouter si besoin. -->
   </div>
   <!-- ======================= FIN VERSION MOBILE (SWIPER) ======================= -->
 
@@ -93,22 +92,20 @@
   <!-- Script principal pour la version desktop -->
   <script src="script.js"></script>
 
-  <!-- Swiper JS depuis un CDN -->
+  <!-- Swiper JS depuis un CDN (ex. version 10.x) -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
   <!-- Initialisation de Swiper pour la version mobile -->
   <script>
-    // On ne l'active que sur la version mobile, 
-    // mais il ne pose pas de souci même sur desktop si on masque #mobileVersion.
     const swiper = new Swiper('.swiper', {
       effect: 'cards',
       grabCursor: true,
-      // pagination si besoin :
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
       },
     });
   </script>
+
 </body>
 </html>

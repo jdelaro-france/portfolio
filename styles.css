@@ -23,7 +23,7 @@ body {
 /* Version desktop                                     */
 /* -------------------------------------------------- */
 #desktopVersion {
-    /* On affichera sur desktop seulement, on le masquera sur mobile. */
+    /* Affiché uniquement sur desktop (>= 769px) */
 }
 
 .header-name {
@@ -87,7 +87,7 @@ body {
 
 .square {
     position: absolute;
-    width: 6.5cm;   /* ~ 246px */
+    width: 6.5cm; /* ~ 246px */
     height: 6.5cm;
     box-sizing: border-box;
     border: 2px solid black;
@@ -182,60 +182,65 @@ body {
     transform: rotateX(0deg);
 }
 
-/* Media queries pour la version desktop -> On cache sur petits écrans */
-@media (max-width: 768px) {
-  #desktopVersion {
-    display: none;
-  }
-
-  .square {
-    width: 50vw;
-    height: 50vw;
-  }
-}
-
-@media (max-width: 480px) {
-  .square {
-    width: 70vw;
-    height: 70vw;
-  }
-}
-
 /* -------------------------------------------------- */
 /* Version mobile (Swiper)                            */
 /* -------------------------------------------------- */
 #mobileVersion {
-  /* On l'affiche seulement sur petits écrans et on le cache sur desktop */
-  display: none; /* caché par défaut (pour les grands écrans) */
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding-top: 20px;
+    /* Caché par défaut sur grand écran. 
+       Affiché sur mobile via media queries. */
+    display: none;
+    width: 100%;
+    /* Donne une hauteur au conteneur Swiper. Ajuste selon le rendu souhaité. */
+    height: 80vh; 
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
-/* Swiper styles (cards effect) */
+/* Slides Swiper */
 .swiper-slide {
-  /* Chaque slide est centré, contiendra une image */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Chaque slide occupe 100% de la hauteur du container Swiper */
 }
 
 .swiper-slide img {
-  width: 90%;
-  height: auto;
-  border: 2px solid #333;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: cover; /* ou contain, selon l'effet souhaité */
 }
 
-/* Affiche le #mobileVersion sur mobile, cache sur desktop */
+/* -------------------------------------------------- */
+/* Media queries pour basculer entre desktop/mobile   */
+/* -------------------------------------------------- */
+/* Pour <= 768px, on masque la version desktop et on affiche la version mobile */
 @media (max-width: 768px) {
-  #mobileVersion {
-    display: block;
-  }
+    #desktopVersion {
+        display: none !important;
+    }
+    #mobileVersion {
+        display: block !important;
+    }
+
+    /* Optionnel : adapter la taille des squares si jamais on tourne l’écran */
+    .square {
+        width: 50vw;
+        height: 50vw;
+    }
+    @media (max-width: 480px) {
+        .square {
+            width: 70vw;
+            height: 70vw;
+        }
+    }
 }
 
+/* Pour >= 769px, l’inverse : version desktop, pas mobile */
 @media (min-width: 769px) {
-  #mobileVersion {
-    display: none;
-  }
+    #desktopVersion {
+        display: block !important;
+    }
+    #mobileVersion {
+        display: none !important;
+    }
 }
