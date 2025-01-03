@@ -87,7 +87,7 @@ body {
 
 .square {
     position: absolute;
-    width: 6.5cm; /* ~ 246px */
+    width: 6.5cm; /* ~246px */
     height: 6.5cm;
     box-sizing: border-box;
     border: 2px solid black;
@@ -190,13 +190,12 @@ body {
        Affiché sur mobile via media queries. */
     display: none;
     width: 100%;
-    /* Donne une hauteur au conteneur Swiper. Ajuste selon le rendu souhaité. */
-    height: 80vh; 
+    /* Hauteur du conteneur Swiper (à ajuster à volonté) */
+    height: 80vh;
     margin: 0 auto;
     box-sizing: border-box;
 }
 
-/* Slides Swiper */
 .swiper-slide {
     display: flex;
     justify-content: center;
@@ -207,13 +206,12 @@ body {
 .swiper-slide img {
     max-width: 90%;
     max-height: 90%;
-    object-fit: cover; /* ou contain, selon l'effet souhaité */
+    object-fit: cover; /* ou contain, selon l'effet voulu */
 }
 
 /* -------------------------------------------------- */
 /* Media queries pour basculer entre desktop/mobile   */
 /* -------------------------------------------------- */
-/* Pour <= 768px, on masque la version desktop et on affiche la version mobile */
 @media (max-width: 768px) {
     #desktopVersion {
         display: none !important;
@@ -222,11 +220,11 @@ body {
         display: block !important;
     }
 
-    /* Optionnel : adapter la taille des squares si jamais on tourne l’écran */
     .square {
         width: 50vw;
         height: 50vw;
     }
+
     @media (max-width: 480px) {
         .square {
             width: 70vw;
@@ -235,7 +233,6 @@ body {
     }
 }
 
-/* Pour >= 769px, l’inverse : version desktop, pas mobile */
 @media (min-width: 769px) {
     #desktopVersion {
         display: block !important;
