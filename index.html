@@ -5,42 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CV Interactif</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 </head>
 <body>
-
-  <!-- ✅ Version Desktop -->
-  <div id="container" class="desktop-only">
+  <div id="container">
+    <!-- Le premier carré -->
     <div class="card" id="card1">
       <div class="card-content">
         <p>Contenu du carré 1</p>
       </div>
     </div>
+
+    <!-- Le deuxième carré -->
     <div class="card" id="card2">
       <div class="card-content">
         <p>Contenu du carré 2</p>
       </div>
     </div>
+
+    <!-- Le troisième carré -->
     <div class="card" id="card3">
       <div class="card-content">
         <p>Contenu du carré 3</p>
       </div>
     </div>
+
+    <!-- Ajoutez ici d'autres cartes si nécessaire -->
   </div>
 
-  <!-- ✅ Version Mobile : Swiper.js -->
-  <div class="swiper mobile-only">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">Carte 1</div>
-      <div class="swiper-slide">Carte 2</div>
-      <div class="swiper-slide">Carte 3</div>
-    </div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
