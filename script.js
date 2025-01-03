@@ -83,7 +83,6 @@ function createSquare(parentId, dataId, imageFront, imageBack, direction) {
     container.appendChild(square);
 
     // Faire défiler la page pour afficher le nouveau carré
-    // On utilise un setTimeout court pour laisser le navigateur mettre à jour l'élément avant de scroller
     setTimeout(() => {
         square.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }, 50);
