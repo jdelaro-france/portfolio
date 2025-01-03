@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>CV Dépliant - Desktop et Mobile</title>
-  <!-- Indispensable pour un bon rendu sur mobile -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- CSS principal -->
@@ -59,15 +58,10 @@
   </div>
   <!-- ======================= FIN VERSION DESKTOP ======================= -->
 
-  <!-- ======================= VERSION MOBILE ======================= -->
-
-  <!-- Entête mobile : nom + description + liens -->
+  <!-- ======================= VERSION MOBILE (SWIPER) ======================= -->
   <div id="mobileHeader">
     <h1>Jérôme de Laromiguière</h1>
-    <p>
-      Expert en innovation produit et en accompagnement 
-      des petites entreprises pour imaginer de nouveaux services.
-    </p>
+    <p>Spécialiste en innovation produit</p>
     <p class="cta">
       <a href="https://www.linkedin.com/in/jérôme-b-15055435" target="_blank">LinkedIn</a> |
       <a href="tel:+33659092535">Appeler</a> |
@@ -77,7 +71,6 @@
 
   <div id="mobileVersion" class="swiper">
     <div class="swiper-wrapper">
-      <!-- Exemples de slides (une image par slide) -->
       <div class="swiper-slide">
         <img src="images/cover_front.jpg" alt="Slide 1">
       </div>
@@ -90,27 +83,24 @@
       <div class="swiper-slide">
         <img src="images/square2_back.jpg" alt="Slide 4">
       </div>
-      <!-- Ajoute d’autres slides si nécessaire -->
     </div>
-    <!-- Pagination Swiper (petits points) -->
     <div class="swiper-pagination"></div>
   </div>
-  <!-- ======================= FIN VERSION MOBILE ======================= -->
+  <!-- ======================= FIN VERSION MOBILE (SWIPER) ======================= -->
 
-  <!-- Script de la version desktop (CV dépliant) -->
+  <!-- Script desktop (CV dépliant) -->
   <script src="script.js"></script>
 
   <!-- Swiper JS (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-  <!-- Initialisation de Swiper pour la version mobile 
-       (suppression des ombres, pagination juste en dessous) -->
+  <!-- Initialisation de Swiper mobile -->
   <script>
     const swiper = new Swiper('.swiper', {
       effect: 'cards',
       grabCursor: true,
       cardsEffect: {
-        slideShadows: false // Désactive les ombres
+        slideShadows: false
       },
       pagination: {
         el: '.swiper-pagination',

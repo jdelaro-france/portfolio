@@ -19,13 +19,10 @@ body {
     overflow: auto; /* Permet le défilement si le contenu dépasse la hauteur */
 }
 
-/* -------------------------------------------------- */
-/* Version desktop (≥ 769px)                          */
-/* -------------------------------------------------- */
-#desktopVersion {
-    /* S'affiche uniquement sur desktop (media queries plus bas) */
-}
+/* ==================== VERSION DESKTOP ==================== */
+#desktopVersion {}
 
+/* Titre principal */
 .header-name {
     text-align: center;
     margin: 20px;
@@ -37,6 +34,7 @@ body {
     color: #333;
 }
 
+/* Intro, texte principal */
 .intro {
     max-width: 600px;
     margin: 20px auto;
@@ -51,9 +49,10 @@ body {
     margin-bottom: 20px; 
 }
 
+/* Liens */
 .intro .cta {
     text-align: center;
-    margin-bottom: 0;
+    margin-bottom: 0; /* Pas de marge supplémentaire en bas */
 }
 
 .intro .cta a {
@@ -66,11 +65,13 @@ body {
     text-decoration: underline;
 }
 
+/* Instructions : on réduit la marge pour rapprocher du carré */
 .instructions {
     text-align: center;
-    margin: 20px;
     font-size: 1.2em;
     color: #333;
+    margin: 20px auto; /* Au lieu de 20px tout autour, on fait 20px vertical */
+    /* margin: 0 auto 20px auto; --> autre possibilité si besoin plus serré */
 }
 
 .instructions p {
@@ -78,6 +79,7 @@ body {
     padding: 0;
 }
 
+/* Container + squares */
 .container {
     position: relative;
     margin: 0;
@@ -127,17 +129,14 @@ body {
     transform-origin: left;
     transition: transform 0.5s ease;
 }
-
 .flip-horizontal.flip .front {
     transform: rotateY(-180deg);
 }
-
 .flip-horizontal .back {
     transform: rotateY(180deg);
     transform-origin: left;
     transition: transform 0.5s ease;
 }
-
 .flip-horizontal.flip .back {
     transform: rotateY(0deg);
 }
@@ -147,17 +146,14 @@ body {
     transform-origin: right;
     transition: transform 0.5s ease;
 }
-
 .flip-horizontal-reverse.flip .front {
     transform: rotateY(180deg);
 }
-
 .flip-horizontal-reverse .back {
     transform: rotateY(-180deg);
     transform-origin: right;
     transition: transform 0.5s ease;
 }
-
 .flip-horizontal-reverse.flip .back {
     transform: rotateY(0deg);
 }
@@ -167,32 +163,27 @@ body {
     transform-origin: top;
     transition: transform 0.5s ease;
 }
-
 .flip-vertical.flip .front {
     transform: rotateX(-180deg);
 }
-
 .flip-vertical .back {
     transform: rotateX(180deg);
     transform-origin: top;
     transition: transform 0.5s ease;
 }
-
 .flip-vertical.flip .back {
     transform: rotateX(0deg);
 }
 
-/* -------------------------------------------------- */
-/* Version mobile (Swiper) + header mobile            */
-/* -------------------------------------------------- */
+/* ==================== VERSION MOBILE (SWIPER) ==================== */
 
-/* Masqué par défaut (pour la version desktop), on l'affiche en media query */
+/* Masqué par défaut sur desktop */
 #mobileHeader,
 #mobileVersion {
     display: none;
 }
 
-/* Entête mobile */
+/* Header mobile */
 #mobileHeader {
     text-align: center;
     max-width: 600px;
@@ -215,15 +206,14 @@ body {
 
 #mobileHeader .cta {
     margin-bottom: 0;
+    text-align: center;
 }
-
 #mobileHeader .cta a {
     color: #0073b1;
     text-decoration: none;
     font-weight: bold;
     margin: 0 5px;
 }
-
 #mobileHeader .cta a:hover {
     text-decoration: underline;
 }
@@ -231,40 +221,36 @@ body {
 #mobileVersion {
     width: 100%;
     max-width: 600px;
-    /* Hauteur du conteneur Swiper, à ajuster si besoin */
-    height: 70vh; 
+    /* Hauteur du conteneur Swiper */
+    height: 70vh;
     margin: 0 auto;
     box-sizing: border-box;
-    position: relative; 
+    position: relative;
 }
 
-/* Pour que la pagination soit juste sous les cartes */
+/* Slides + pagination */
 .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100% - 30px); 
-    /* On laisse un petit espace en bas pour la pagination */
+    height: calc(100% - 30px); /* Laisse un peu de place en bas pour la pagination */
 }
 
 .swiper-slide img {
     max-width: 90%;
     max-height: 90%;
-    object-fit: cover; /* ou contain, selon l'effet voulu */
+    object-fit: cover;
 }
 
-/* Pagination juste en dessous : on peut la positionner avec un margin-top faible */
 .swiper-pagination {
     text-align: center;
-    margin-top: 5px;  /* Très petit écart entre la carte et les points */
+    margin-top: 5px;
     margin-bottom: 0;
-    position: relative; 
+    position: relative;
 }
 
-/* -------------------------------------------------- */
-/* Media queries pour basculer entre desktop/mobile   */
-/* -------------------------------------------------- */
-/* Pour <= 768px : afficher header & swiper mobile, masquer desktopVersion */
+/* ==================== MEDIA QUERIES ==================== */
+/* <= 768px => mobile */
 @media (max-width: 768px) {
     #desktopVersion {
         display: none !important;
@@ -287,7 +273,7 @@ body {
     }
 }
 
-/* Pour >= 769px : afficher desktop, masquer version mobile */
+/* >= 769px => desktop */
 @media (min-width: 769px) {
     #desktopVersion {
         display: block !important;
