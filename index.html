@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>CV Dépliant - Desktop et Mobile</title>
-
   <!-- Indispensable pour un bon rendu sur mobile -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -61,9 +60,16 @@
   <!-- ======================= FIN VERSION DESKTOP ======================= -->
 
   <!-- ======================= VERSION MOBILE (SWIPER) ======================= -->
+
+  <!-- Entête mobile : nom + court texte -->
+  <div id="mobileHeader">
+    <h1>Jérôme de Laromiguière</h1>
+    <p>Spécialiste en innovation produit</p>
+  </div>
+
   <div id="mobileVersion" class="swiper">
     <div class="swiper-wrapper">
-      <!-- Exemples de slides (1 image par slide) -->
+      <!-- Exemples de slides (une image par slide) -->
       <div class="swiper-slide">
         <img src="images/cover_front.jpg" alt="Slide 1">
       </div>
@@ -76,10 +82,9 @@
       <div class="swiper-slide">
         <img src="images/square2_back.jpg" alt="Slide 4">
       </div>
-      <!-- Ajoute d’autres slides si nécessaire (square3, square4, etc.) -->
+      <!-- Ajoute d’autres slides si nécessaire -->
     </div>
-
-    <!-- Pagination Swiper (optionnelle) -->
+    <!-- Pagination Swiper (petits points) -->
     <div class="swiper-pagination"></div>
   </div>
   <!-- ======================= FIN VERSION MOBILE (SWIPER) ======================= -->
@@ -90,13 +95,14 @@
   <!-- Swiper JS (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-  <!-- Initialisation de Swiper pour la version mobile (suppression des ombres) -->
+  <!-- Initialisation de Swiper pour la version mobile 
+       (suppression des ombres, pagination rapprochée, etc.) -->
   <script>
     const swiper = new Swiper('.swiper', {
       effect: 'cards',
       grabCursor: true,
       cardsEffect: {
-        slideShadows: false,  // <-- Désactive les ombres
+        slideShadows: false // Désactive les ombres
       },
       pagination: {
         el: '.swiper-pagination',
