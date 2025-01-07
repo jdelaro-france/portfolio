@@ -211,16 +211,19 @@ body {
     margin-bottom: 0;
     text-align: center;
 }
+
 #mobileHeader .cta a {
     color: #0073b1;
     text-decoration: none;
     font-weight: bold;
     margin: 0 5px;
 }
+
 #mobileHeader .cta a:hover {
     text-decoration: underline;
 }
 
+/* Carrousel mobile */
 #mobileVersion {
     width: 100%;
     max-width: 600px;
@@ -228,14 +231,15 @@ body {
     margin: 0 auto;
     box-sizing: border-box;
     position: relative;
+    overflow: hidden; /* Assure que les images ne débordent pas */
 }
 
-/* Slides + pagination */
+/* Slides du carrousel */
 .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100% - 30px); 
+    height: calc(100% - 40px); /* Ajustement pour éviter un trop grand espace en bas */
 }
 
 .swiper-slide img {
@@ -244,11 +248,21 @@ body {
     object-fit: cover;
 }
 
+/* Pagination du carrousel */
 .swiper-pagination {
     text-align: center;
-    margin-top: 5px;
-    margin-bottom: 0;
+    margin: 10px 0 0 0; /* Ajuste l’espace entre le carrousel et les points de pagination */
     position: relative;
+    bottom: 0; /* S’assure que la pagination est bien calée sous le carrousel */
+}
+
+/* Ajustement global pour l’espace avec le paragraphe suivant */
+#mobileVersion + p {
+    margin-top: 20px; /* Ajoute un espacement contrôlé entre le carrousel et le texte suivant */
+    text-align: center;
+    font-size: 0.95em;
+    color: #666;
+    line-height: 1.4;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
