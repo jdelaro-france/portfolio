@@ -143,8 +143,7 @@ body {
 
 /* Masqué par défaut sur desktop */
 #mobileHeader,
-#mobileVersion,
-#mobileFooter {
+#mobileVersion {
     display: none;
 }
 
@@ -173,19 +172,16 @@ body {
     margin-bottom: 0;
     text-align: center;
 }
-
 #mobileHeader .cta a {
     color: #0073b1;
     text-decoration: none;
     font-weight: bold;
     margin: 0 5px;
 }
-
 #mobileHeader .cta a:hover {
     text-decoration: underline;
 }
 
-/* Carrousel mobile */
 #mobileVersion {
     width: 100%;
     max-width: 600px;
@@ -193,17 +189,14 @@ body {
     margin: 0 auto;
     box-sizing: border-box;
     position: relative;
-    overflow: hidden;
 }
 
-/* Slides du carrousel */
+/* Slides + pagination */
 .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100% - 40px); /* Évite l'espace inutile */
-    margin: 0;
-    padding: 0;
+    height: calc(100% - 30px); 
 }
 
 .swiper-slide img {
@@ -212,32 +205,15 @@ body {
     object-fit: cover;
 }
 
-/* Pagination du carrousel */
 .swiper-pagination {
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    bottom: 50px; /* Remonte franchement la pagination */
-    left: 0;
-    right: 0;
     text-align: center;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.5); /* Lisibilité accrue */
-    height: 30px;
-    border-radius: 5px;
-}
-
-/* Ajustement global pour le paragraphe suivant */
-#mobileFooter {
-    margin-top: 10px;
-    text-align: center;
-    font-size: 0.95em;
-    color: #666;
-    line-height: 1.4;
-}
+    margin-top: 5px;
+    margin-bottom: 0;
+    position: relative;
+}"
 
 /* ==================== MEDIA QUERIES ==================== */
-/* <= 768px => mobile */
+/* <= 768px => Mobile */
 @media (max-width: 768px) {
     #desktopVersion {
         display: none !important;
@@ -253,24 +229,44 @@ body {
         width: 50vw;
         height: 50vw;
     }
+
+    /* Texte mobile uniquement */
+    #mobileOnlyText {
+        display: block !important;
+        margin: 20px 0;
+        font-size: 14px;
+        line-height: 1.5;
+    }
 }
 
-/* <= 480px => mobile petits écrans */
+/* <= 480px => Mobile petits écrans */
 @media (max-width: 480px) {
     .square {
         width: 70vw;
         height: 70vw;
     }
+
+    /* Ajustement du texte pour les petits écrans */
+    #mobileOnlyText {
+        font-size: 12px;
+        margin: 15px 0;
+    }
 }
 
-/* >= 769px => desktop */
+/* >= 769px => Desktop */
 @media (min-width: 769px) {
     #desktopVersion {
         display: block !important;
     }
+
     #mobileHeader,
     #mobileVersion,
     #mobileFooter {
+        display: none !important;
+    }
+
+    /* Cache le texte mobile sur desktop */
+    #mobileOnlyText {
         display: none !important;
     }
 }
