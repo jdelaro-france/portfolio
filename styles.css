@@ -68,9 +68,11 @@ body {
 /* Phrase "Pour déplier..." */
 .instructions {
     text-align: center;
+    margin: 20px auto;
+    margin-bottom: 10px; /* Espace réduit après .instructions */
     font-size: 1.2em;
     color: #333;
-    margin: 20px auto;
+
 }
 
 .instructions p {
@@ -84,6 +86,8 @@ body {
     margin: 0;
     padding: 0;
     overflow: visible;
+    margin-top: -10px; /* Rapproche le container du bloc précédent */
+}
 }
 
 .square {
