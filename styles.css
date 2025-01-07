@@ -20,7 +20,9 @@ body {
 }
 
 /* ==================== VERSION DESKTOP ==================== */
-#desktopVersion {}
+#desktopVersion {
+    display: block;
+}
 
 /* Titre principal */
 .header-name {
@@ -69,10 +71,8 @@ body {
 .instructions {
     text-align: center;
     margin: 20px auto;
-    margin-bottom: 10px; /* Espace réduit après .instructions */
     font-size: 1.2em;
     color: #333;
-
 }
 
 .instructions p {
@@ -83,11 +83,9 @@ body {
 /* Container + squares */
 .container {
     position: relative;
-    margin: 0;
-    padding: 0;
+    margin: 0 auto;
+    margin-top: -10px;
     overflow: visible;
-    margin-top: -10px; /* Rapproche le container du bloc précédent */
-}
 }
 
 .square {
@@ -106,7 +104,6 @@ body {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,7 +126,6 @@ body {
 /* Effets de retournement */
 .flip-horizontal .front {
     transform: rotateY(0deg);
-    transform-origin: left;
     transition: transform 0.5s ease;
 }
 .flip-horizontal.flip .front {
@@ -137,52 +133,18 @@ body {
 }
 .flip-horizontal .back {
     transform: rotateY(180deg);
-    transform-origin: left;
     transition: transform 0.5s ease;
 }
 .flip-horizontal.flip .back {
     transform: rotateY(0deg);
 }
 
-.flip-horizontal-reverse .front {
-    transform: rotateY(0deg);
-    transform-origin: right;
-    transition: transform 0.5s ease;
-}
-.flip-horizontal-reverse.flip .front {
-    transform: rotateY(180deg);
-}
-.flip-horizontal-reverse .back {
-    transform: rotateY(-180deg);
-    transform-origin: right;
-    transition: transform 0.5s ease;
-}
-.flip-horizontal-reverse.flip .back {
-    transform: rotateY(0deg);
-}
-
-.flip-vertical .front {
-    transform: rotateX(0deg);
-    transform-origin: top;
-    transition: transform 0.5s ease;
-}
-.flip-vertical.flip .front {
-    transform: rotateX(-180deg);
-}
-.flip-vertical .back {
-    transform: rotateX(180deg);
-    transform-origin: top;
-    transition: transform 0.5s ease;
-}
-.flip-vertical.flip .back {
-    transform: rotateX(0deg);
-}
-
 /* ==================== VERSION MOBILE (SWIPER) ==================== */
 
 /* Masqué par défaut sur desktop */
 #mobileHeader,
-#mobileVersion {
+#mobileVersion,
+#mobileFooter {
     display: none;
 }
 
@@ -239,7 +201,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* Occupe toute la hauteur disponible */
+    height: calc(100% - 40px); /* Évite l'espace inutile */
     margin: 0;
     padding: 0;
 }
@@ -254,29 +216,36 @@ body {
 .swiper-pagination {
     margin: 0;
     padding: 0;
-    position: absolute; /* Fixe la pagination au bas du carrousel */
-    bottom: 0;
+    position: absolute;
+    bottom: 50px; /* Remonte franchement la pagination */
     left: 0;
     right: 0;
     text-align: center;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.5); /* Lisibilité accrue */
+    height: 30px;
+    border-radius: 5px;
 }
 
 /* Ajustement global pour le paragraphe suivant */
-#mobileVersion + p {
-    margin-top: 0; /* Supprime totalement l’espace entre le carrousel et le paragraphe suivant */
+#mobileFooter {
+    margin-top: 10px;
     text-align: center;
     font-size: 0.95em;
     color: #666;
     line-height: 1.4;
 }
+
 /* ==================== MEDIA QUERIES ==================== */
 /* <= 768px => mobile */
 @media (max-width: 768px) {
     #desktopVersion {
         display: none !important;
     }
+
     #mobileHeader,
-    #mobileVersion {
+    #mobileVersion,
+    #mobileFooter {
         display: block !important;
     }
 
@@ -284,12 +253,13 @@ body {
         width: 50vw;
         height: 50vw;
     }
+}
 
-    @media (max-width: 480px) {
-        .square {
-            width: 70vw;
-            height: 70vw;
-        }
+/* <= 480px => mobile petits écrans */
+@media (max-width: 480px) {
+    .square {
+        width: 70vw;
+        height: 70vw;
     }
 }
 
@@ -299,7 +269,8 @@ body {
         display: block !important;
     }
     #mobileHeader,
-    #mobileVersion {
+    #mobileVersion,
+    #mobileFooter {
         display: none !important;
     }
 }
