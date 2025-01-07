@@ -239,7 +239,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* Occupe toute la hauteur disponible */
+    height: 100%;
     margin: 0;
     padding: 0;
 }
@@ -250,20 +250,24 @@ body {
     object-fit: cover;
 }
 
-/* Pagination du carrousel */
+/* Pagination positionnée au-dessus du carrousel, mais visuellement en bas */
 .swiper-pagination {
     margin: 0;
     padding: 0;
-    position: absolute; /* Fixe la pagination au bas du carrousel */
-    bottom: 0;
+    position: absolute; /* Positionnement absolu pour fixer l'emplacement */
+    top: auto; /* Désactive le positionnement par le haut */
+    bottom: 0; /* Positionne en bas visuellement */
     left: 0;
     right: 0;
+    z-index: 10; /* S'assure que la pagination reste visible au-dessus */
+    background: rgba(255, 255, 255, 0.5); /* Optionnel : arrière-plan pour meilleure lisibilité */
     text-align: center;
+    height: 30px; /* Hauteur contrôlée pour éviter de prendre trop de place */
 }
 
 /* Ajustement global pour le paragraphe suivant */
 #mobileVersion + p {
-    margin-top: 0; /* Supprime totalement l’espace entre le carrousel et le paragraphe suivant */
+    margin-top: 10px; /* Espace léger entre le carrousel et le texte suivant */
     text-align: center;
     font-size: 0.95em;
     color: #666;
